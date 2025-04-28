@@ -9,18 +9,7 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    // Global quick-tap setting
-    quick-tap-ms = <100>; // Faster quick taps overall
-
-    behaviors {
-        hold_tap_home_row: behavior_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row ModTap";
-            flavor = "tap-preferred";      // Prefer tap
-            tapping-term-ms = <100>;        // Faster hold-tap timeout
-            quick-tap-ms = <140>;           // Allow quicker double-tap taps
-        };
-    };
+    quick-tap-ms = <140>; // Optional: improves quick double-tap feeling globally
 
     keymap {
         compatible = "zmk,keymap";
@@ -29,7 +18,18 @@
             display-name = "Base";
             bindings = <
 &kp TAB     &kp Q           &kp W           &kp E               &kp R             &kp T        &kp Y    &kp U              &kp I         &kp O            &kp P                    &kp BSPC
-&kp ESCAPE  &hold_tap_home_row LEFT_WIN A  &hold_tap_home_row LEFT_ALT S  &hold_tap_home_row LEFT_CONTROL D  &hold_tap_home_row LEFT_SHIFT F  &kp G        &kp H    &hold_tap_home_row RIGHT_SHIFT J  &hold_tap_home_row RCTRL K   &hold_tap_home_row RIGHT_ALT L  &hold_tap_home_row RIGHT_WIN BACKSPACE  &kp SQT
+&kp ESCAPE  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } LEFT_GUI A  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } LEFT_ALT S  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } LEFT_CONTROL D  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } LEFT_SHIFT F  
+&kp G        
+&kp H    
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } RIGHT_SHIFT J  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } RIGHT_CONTROL K  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } RIGHT_ALT L  
+&mt { hold-tap-flavor = "tap-preferred"; hold-tap-timeout = <100>; } RIGHT_GUI BACKSPACE  
+&kp SQT
 &kp LSHFT   &kp Y           &kp X           &kp C               &kp V             &kp B        &kp N    &kp M              &kp KP_COMMA  &kp KP_DOT       &kp MINUS                &kp ESC
                                             &kp LGUI            &mo 1             &kp SPACE    &kp RET  &mo 2              &kp RALT
             >;
@@ -56,9 +56,7 @@
         };
 
         extra_1 { status = "reserved"; };
-
         extra_2 { status = "reserved"; };
-
         extra_3 { status = "reserved"; };
     };
 };
